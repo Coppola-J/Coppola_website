@@ -130,11 +130,6 @@
       z-index: 1;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     @media (min-width: 769px) {
       header h1 {
         padding: 0rem 0rem 1rem 0rem; /* TOP RIGHT BOTTOM LEFT */
@@ -166,7 +161,7 @@
       }
 
       iframe {
-        height: 500px; /* shorter PDF viewer on phone */
+        height: 600px; /* shorter PDF viewer on phone */
       }
 
       .download-link a {
@@ -260,7 +255,32 @@
     .nav-links a:hover {
       color: #FF5349;
     }
-}
+  }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    /* when it comes into view */
+    .appear {
+      opacity: 1;
+      transform: translateY(0);
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+
   </style>
 </head>
 
@@ -292,7 +312,7 @@
 </header>
 
 <main>
-  <div class="resume-card">
+  <div class="resume-card fade-in">
     <iframe src="extra/Coppola_Resume_S2025_2.pdf"></iframe>
     <div class="download-link">
       <a href="extra/Coppola_Resume_S2025_2.pdf" download>Download Resume</a>
@@ -305,6 +325,23 @@
 </footer>
 
 <script>
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('appear');
+        observer.unobserve(entry.target); // Only animate once
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  // 🔥 Observe all fade-in elements
+  document.querySelectorAll('.fade-in').forEach(element => {
+    observer.observe(element);
+  });
+
   function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
     const menuIcon = document.getElementById('menu-icon');
