@@ -162,56 +162,84 @@
       position: relative;
       z-index: 1;
     }
-    @media (max-width: 768px) {
+    body {
+  overscroll-behavior: none;
+}
+
+/* Header and nav styling */
+header {
+  background: rgba(0, 33, 165, 0.9);
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Sub-header centered */
+.sub-header {
+  text-align: center;
+}
+
+/* Menu toggle hidden by default */
+.menu-toggle {
+  display: none;
+}
+
+/* Nav links hidden by default on all screens */
+.nav-links {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* When menu is active, show links */
+.nav-links.active {
+  display: flex;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Desktop view adjustments */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 
   .carousel, .carousel img {
-    height: 200px; /* Shrink carousel for mobile */
-  }
-
-  header {
-    padding: 0.5rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  footer {
-    position: sticky;
-    bottom: 0;
-    z-index: 1000;
+    height: 200px;
   }
 
   nav {
     margin-top: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
-  nav a {
-    margin: 0.5rem 0;
-  }
-
+  /* Show menu toggle button */
   .menu-toggle {
     display: block;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #fff;
-    margin-bottom: 0.5rem;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-links.active {
-    display: flex;
-    animation: fadeIn 0.3s ease forwards;
+    margin-top: 0.5rem;
   }
 
   .modal-content {
@@ -222,34 +250,7 @@
   }
 }
 
-/* ✅ Styles for desktop (normal screens) */
-.menu-toggle {
-  display: none;
-}
-
-.nav-links {
-  display: flex;
-  justify-content: flex-end; /* Nav links right-aligned on desktop */
-  gap: 1rem;
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Center sub-header */
-.sub-header {
-  text-align: center;
-}
-
-/* Prevent body bouncing on mobile */
-body {
-  overscroll-behavior: none;
-}
-
-/* Fade-in animation for menu open */
+/* Fade-in animation for mobile menu */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
