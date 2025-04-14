@@ -14,10 +14,10 @@
       background: linear-gradient(to bottom right, #FA4616, #0021A5);
       background-attachment: fixed;
       color: #fff;
-      display: flex;
-      flex-direction: column;
       overflow-x: hidden;
       position: relative;
+      scroll-behavior: smooth;
+      overscroll-behavior: none;
     }
 
     .background-animation {
@@ -40,31 +40,53 @@
 
     header {
       background: rgba(0, 33, 165, 0.9);
-      padding: 1rem 1rem 1rem 1rem; /* TOP RIGHT BOTTOM LEFT */
+      padding: 1rem;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
       position: relative;
+      z-index: 1;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
     }
 
     header h1 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       margin: 0;
       font-size: 2rem;
       font-weight: 700;
     }
 
     nav {
-      margin-top: 0.5rem;
+      margin-left: 1rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 1rem;
+      gap: 1rem;
+    }
+
+    .nav-links.active {
+      display: flex;
+      animation: fadeIn 0.3s ease forwards;
     }
 
     nav a {
       color: #fff;
       text-decoration: none;
-      margin: 0 1.2rem;
+      margin: 0 1rem;
       font-weight: 500;
       font-size: 1rem;
       transition: color 0.3s;
@@ -75,14 +97,15 @@
     }
 
     main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 6rem 1rem 2rem 1rem;
+      padding: 5rem 2rem 2rem 2rem;
+      max-width: 1200px;
+      margin: auto;
       position: relative;
       z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
     .contact-card {
@@ -142,57 +165,161 @@
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
-      z-index: 1;
       position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 769px) {
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 1rem;
+      }
+      .menu-toggle {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        margin-top: 0.5rem;
+      }
+
+      .menu-toggle {
+    display: block;
+    font-size: 1rem;
+    color: #fff;
+    margin-left: .1rem;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 0rem;
+    margin-left: .1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+    animation: fadeIn 0.3s ease forwards;
+  }
+
+  .modal-content {
+    width: 90%;
+    max-width: 400px;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* 🔥 Key: Flex row for header, but special center for h1 */
+  header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    padding: 1rem;
+  }
+
+  header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+      .contact-card {
+        padding: 1.5rem;
+        max-width: 90%;
+      }
+
+      input, textarea {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+      }
+
+      button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Circuit Board Background Animation -->
-  <div class="background-animation">
-    <dotlottie-player 
-      src="https://lottie.host/7f862c30-c5ec-4829-a248-895fbce816c2/mRheNRO0yJ.lottie" 
-      background="transparent" 
-      speed="1" 
-      loop 
-      autoplay>
-    </dotlottie-player>
-  </div>
+<!-- Background animation -->
+<div class="background-animation">
+  <dotlottie-player 
+    src="https://lottie.host/7f862c30-c5ec-4829-a248-895fbce816c2/mRheNRO0yJ.lottie" 
+    background="transparent" 
+    speed="1" 
+    loop autoplay>
+  </dotlottie-player>
+</div>
 
-  <header>
-    <h1>Contact</h1>
-    <nav>
+<header>
+  <h1>Contact</h1>
+  <nav>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span id="menu-icon">☰</span>
+    </div>
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
       <a href="resume.html">Resume</a>
       <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <div class="contact-card">
-      <h2>Get in Touch</h2>
-      <p>If you'd like to connect, feel free to reach out using the form below or email me directly at <a class="email-link" href="mailto:justin.coppola@ufl.edu">justin.coppola@ufl.edu</a>.</p>
-
-      <form action="mailto:justin.coppola@ufl.edu" method="POST" enctype="text/plain">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="6" required></textarea>
-
-        <button type="submit">Send Message</button>
-      </form>
     </div>
-  </main>
+  </nav>
+</header>
 
-  <footer>
-    <p>&copy; 2025 Justin Coppola</p>
-  </footer>
+<main>
+  <div class="contact-card">
+    <h2>Get in Touch</h2>
+    <p>If you'd like to connect, feel free to reach out using the form below or email me directly at <a class="email-link" href="mailto:justin.coppola@ufl.edu">justin.coppola@ufl.edu</a>.</p>
+
+    <form action="mailto:justin.coppola@ufl.edu" method="POST" enctype="text/plain">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Justin Coppola</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const menuIcon = document.getElementById('menu-icon');
+    navLinks.classList.toggle('active');
+
+    if (navLinks.classList.contains('active')) {
+      menuIcon.textContent = '✖'; // X
+    } else {
+      menuIcon.textContent = '☰'; // Hamburger
+    }
+  }
+</script>
 
 </body>
 </html>

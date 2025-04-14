@@ -14,10 +14,10 @@
       background: linear-gradient(to bottom right, #FA4616, #0021A5);
       background-attachment: fixed;
       color: #fff;
-      display: flex;
-      flex-direction: column;
       overflow-x: hidden;
       position: relative;
+      scroll-behavior: smooth;
+      overscroll-behavior: none;
     }
 
     .background-animation {
@@ -40,49 +40,40 @@
 
     header {
       background: rgba(0, 33, 165, 0.9);
-      height: 115px;
+      padding: 1rem 1rem 1rem 1rem; /* TOP RIGHT BOTTOM LEFT */
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
       position: relative;
+      z-index: 1;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
-
     header h1 {
       margin: 0;
       font-size: 2rem;
       font-weight: 700;
     }
-
     nav {
       margin-top: 0.5rem;
     }
-
     nav a {
       color: #fff;
       text-decoration: none;
-      margin: 0 1.2rem;
+      margin: 0 1rem;
       font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.3s;
     }
-
     nav a:hover {
       color: #FFCC00;
     }
 
     main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 1rem;
+      padding: 5rem 2rem 2rem 2rem;
+      max-width: 1200px;
+      margin: auto;
       position: relative;
       z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
     .about-me {
@@ -125,46 +116,155 @@
       color: white;
       text-align: center;
       padding: 1rem;
-      z-index: 1;
-      position: relative;
       font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 769px) {
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 1rem;
+      }
+      .menu-toggle {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+  .about-me {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  .about-me h2 {
+    font-size: 1.5rem;
+  }
+
+  .about-me p {
+    font-size: 1rem;
+  }
+
+  .about-me img {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 1rem;
+  }
+  nav {
+    margin-top: 0.5rem;
+  }
+
+  /* Show menu toggle button */
+  .menu-toggle {
+    display: block;
+    font-size: 1rem;
+    color: #fff;
+    margin-left: .1rem;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    margin-left: .1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+    animation: fadeIn 0.3s ease forwards;
+  }
+
+  .modal-content {
+    width: 90%;
+    max-width: 400px;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* 🔥 Key: Flex row for header, but special center for h1 */
+  header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    padding: 1rem;
+  }
+
+  header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 1.5rem;
+  }
+}
   </style>
 </head>
+
 <body>
 
-  <!-- Circuit Board Background Animation -->
-  <div class="background-animation">
-    <dotlottie-player 
-      src="https://lottie.host/7f862c30-c5ec-4829-a248-895fbce816c2/mRheNRO0yJ.lottie" 
-      background="transparent" 
-      speed="1" 
-      loop 
-      autoplay>
-    </dotlottie-player>
-  </div>
+<!-- Background animation -->
+<div class="background-animation">
+  <dotlottie-player 
+    src="https://lottie.host/7f862c30-c5ec-4829-a248-895fbce816c2/mRheNRO0yJ.lottie" 
+    background="transparent" 
+    speed="1" 
+    loop autoplay>
+  </dotlottie-player>
+</div>
 
-  <header>
-    <h1>Justin Coppola</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
-      <a href="resume.html">Resume</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <div class="about-me">
-      <img src="images/headshot.jpg" alt="Profile Image">
-      <h2>About Me</h2>
-      <p>Welcome to my personal portfolio website. I'm Justin Coppola, and I am passionate about semiconductor logic, driven by a desire to solve complex problems at the hardware level. I specialize in RTL design, SystemVerilog development, Python scripting, and digital verification. I'm eager to apply my experience building production-ready IP and my passion for digital systems to help shape the future of semiconductor technology.</p>
+<header>
+    <div class="header-container">
+      <h1>Justin Coppola</h1>
+      <nav>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span id="menu-icon">☰</span>
+          </div>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="projects.html">Projects</a>
+          <a href="resume.html">Resume</a>
+        </div>
+      </nav>
     </div>
-  </main>
+  </header>  
 
-  <footer>
-    <p>&copy; 2025 Justin Coppola</p>
-  </footer>
+<main>
+  <div class="about-me">
+    <img src="images/headshot.jpg" alt="Profile Image">
+    <h2>About Me</h2>
+    <p>Welcome to my personal portfolio website. I'm Justin Coppola, and I am passionate about semiconductor logic, driven by a desire to solve complex problems at the hardware level. I specialize in RTL design, SystemVerilog development, Python scripting, and digital verification. I'm eager to apply my experience building production-ready IP and my passion for digital systems to help shape the future of semiconductor technology.</p>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Justin Coppola</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const menuIcon = document.getElementById('menu-icon');
+    navLinks.classList.toggle('active');
+
+    if (navLinks.classList.contains('active')) {
+      menuIcon.textContent = '✖'; // X
+    } else {
+      menuIcon.textContent = '☰'; // Hamburger
+    }
+  }
+</script>
 
 </body>
 </html>
