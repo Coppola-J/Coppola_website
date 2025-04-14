@@ -162,6 +162,26 @@
       position: relative;
       z-index: 1;
     }
+    @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    .carousel, .carousel img {
+      height: 200px; /* Shrink carousel for mobile */
+    }
+    header {
+      padding: 0.5rem;
+    }
+    nav {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    nav a {
+      margin: 0.5rem 0;
+    }
+    }
   </style>
 </head>
 
