@@ -164,50 +164,94 @@
     margin-top: 0.5rem;
   }
 
-  /* Show menu toggle button */
-  .menu-toggle {
-    display: block;
-    font-size: 1rem;
-    color: #fff;
-    margin-left: .1rem;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1rem;
-    margin-left: .1rem;
-  }
-
-  .nav-links.active {
-    display: flex;
-    animation: fadeIn 0.3s ease forwards;
-  }
-
-  .modal-content {
-    width: 90%;
-    max-width: 400px;
-    padding: 1rem;
-    font-size: 0.9rem;
-  }
-
-  /* 🔥 Key: Flex row for header, but special center for h1 */
   header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-    padding: 1rem;
-  }
+  background: rgba(0, 33, 165, 0.9);
+  height: 70px;
+  position: relative; /* This is key */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
 
-  header h1 {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
-    font-size: 1.5rem;
-  }
+.header-container {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle {
+  position: absolute;
+  left: 1rem;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 20;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.nav-links {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 75%; /* smaller width to feel more like a dropdown card */
+  margin: 0 auto; /* center it horizontally */
+  right: 0;
+  background: rgba(0, 33, 165, 0.95);
+  border-radius: 15px; /* ← FULL rounded edges */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  z-index: 5;
+  box-shadow: 0px 4px 20px rgba(0,0,0,0.2); /* ← soft drop shadow */
+  background: rgba(0, 33, 165, 0.7);
+  backdrop-filter: blur(6px);
+
+}
+
+
+.nav-links.active {
+  max-height: 500px; /* enough space to open */
+  opacity: 1;
+}
+
+.nav-links a {
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:first-child {
+  border-top: none;
+}
+
+.nav-links a:hover {
+  color: #ff9900;
+}
+
+
+
+
 }
   </style>
 </head>
@@ -225,20 +269,19 @@
 </div>
 
 <header>
-    <div class="header-container">
-      <h1>Justin Coppola</h1>
-      <nav>
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <span id="menu-icon">☰</span>
-          </div>
-        <div class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="projects.html">Projects</a>
-          <a href="resume.html">Resume</a>
-        </div>
-      </nav>
+  <div class="header-container">
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span id="menu-icon">☰</span>
     </div>
-  </header>  
+    <h1>Justin Coppola</h1>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="resume.html">Resume</a>
+    </div>
+  </div>
+</header>
+
 
 <main>
   <div class="about-me">
