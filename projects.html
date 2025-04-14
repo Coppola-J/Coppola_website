@@ -369,7 +369,7 @@ header h1 {
         <img src="images/mips_project.PNG" class="active">
         <img src="images/waveform_MIPS.PNG">
       </div>
-      <h3>MIPS-like Microprocessor Design</h3>
+      <h3>MIPS Microprocessor Design</h3>
     </div>
 
     <div class="project-card" onclick="openModal(2)">
@@ -377,7 +377,7 @@ header h1 {
         <img src="images/soc_camera_car.jpg" class="active">
         <img src="images/soc_car_auto.jpg">
       </div>
-      <h3>SoC Design for Autonomous Car</h3>
+      <h3>Autonomous Car on SoC</h3>
     </div>
 
     <div class="project-card" onclick="openModal(3)">
@@ -396,7 +396,7 @@ header h1 {
         <img src="images/fieros_car.jpg" class="active">
         <img src="images/fiero_restored.jpg">
       </div>
-      <h3>Pontiac Fiero Engine Restoration</h3>
+      <h3>Pontiac Fiero Restoration</h3>
     </div>
 
     <div class="project-card" onclick="openModal(5)">
@@ -405,7 +405,7 @@ header h1 {
         <img src="images/roulette_pcb.png">
         <img src="images/roulette_pcd_design.png">
       </div>
-      <h3>Roulette Game on Microcontroller</h3>
+      <h3>Raspberry Pi Roulette</h3>
     </div>
 
     <div class="project-card" onclick="openModal(6)">
@@ -413,7 +413,7 @@ header h1 {
         <img src="images/up.jpg" class="active">
         <img src="images/waveform_up.png">
       </div>
-      <h3>DAC Waveform Generator & USART Piano</h3>
+      <h3>Keyboard USART Pi</h3>
     </div>
   </div>
 
@@ -451,13 +451,15 @@ header h1 {
 
 <!-- Modal -->
 <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2 id="modalTitle"></h2>
-      <p id="modalDescription"></p>
-      <p><strong>Skills:</strong> <span id="modalSkills"></span></p>
-    </div>
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalSubheader" class="modal-subheader"></p> <!-- 🔥 New Subheader Line -->
+    <p id="modalDescription"></p>
+    <p><strong>Skills:</strong> <span id="modalSkills"></span></p>
   </div>
+</div>
+
   
   <footer>
     <p>&copy; 2025 Justin Coppola</p>
@@ -466,69 +468,83 @@ header h1 {
   <script>
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modalTitle');
+    const modalSubheader = document.getElementById('modalSubheader');
     const modalDescription = document.getElementById('modalDescription');
     const modalSkills = document.getElementById('modalSkills');
   
     const projects = [
-      {
-        title: "Intel RTL Sub-IP Design",
-        desc: `Designed a new RTL sub-IP for next-gen Intel CPUs. Reverse-engineered legacy systems, integrated industry-standard tools, and created SystemVerilog logic with assertions.`,
-        skills: "SystemVerilog, RTL Design, Assertions, EDA Tools, Linux Automation"
-      },
-      {
-        title: "MIPS-like Microprocessor Design",
-        desc: `Designed, simulated, and implemented a custom 32-bit MIPS-like microprocessor in VHDL with full instruction set support and FPGA deployment.`,
-        skills: "VHDL, CPU Architecture, RTL Design, FSM Controller Design, FPGA Prototyping"
-      },
-      {
-        title: "SoC Design for Autonomous Car",
-        desc: `Built an autonomous vehicle capable of lane detection and steering based on real-time image processing (Python/OpenCV) and SystemVerilog hardware control.`,
-        skills: "Python, OpenCV, SystemVerilog, SoC Design, Embedded Systems"
-      },
-      {
-        title: "Pong Game on FPGA",
-        desc: `Implemented a Pong game using Verilog on a Pynq-Z2 FPGA, involving real-time paddle/ball logic, HDMI output generation, and clock domain management.`,
-        skills: "Verilog, FPGA Design, HDMI Output, IP Core Integration, Clock Management"
-      },
-      {
-        title: "Pontiac Fiero Engine Restoration",
-        desc: `Restored a non-running Pontiac Fiero, diagnosing critical mechanical faults, replacing major components, and reprogramming the engine control PROM.`,
-        skills: "Diagnostics, Systems Engineering, Control Systems, Mechanical Repair, Automotive Electronics"
-      },
-      {
-        title: "Roulette Game on Microcontroller",
-        desc: `Built a roulette game using Raspberry Pi Pico, PCB design, LED animations, LCD scoring, and DAC-driven speaker output.`,
-        skills: "Embedded Systems, PCB Design, DAC Programming, Microcontroller Development, Circuit Debugging"
-      },
-      {
-        title: "DAC Waveform Generator & USART Piano",
-        desc: `Developed a DAC waveform generator and a USART-controlled digital piano using DMA and event-driven embedded programming.`,
-        skills: "Embedded C Programming, DAC Control, DMA Usage, USART Communication, Real-Time Systems"
-      },
-      {
-        title: "Applied ML: Dempster-Shafer Fusion",
-        desc: `Built machine learning models using Dempster-Shafer Theory to enhance classification under uncertainty. Processed and fused multi-source data.`,
-        skills: "Python, Machine Learning, Information Fusion, Uncertainty Modeling, Multithreading"
-      },
-      {
-        title: "Flower Species Classification",
-        desc: `Built a TensorFlow model using transfer learning to classify flower species. Achieved near 100% accuracy through model fine-tuning.`,
-        skills: "Python, TensorFlow, Deep Learning, Transfer Learning, Image Classification"
-      },
-      {
-        title: "API Automation Tools (Python Bots)",
-        desc: `Developed Telegram and Twitter bots in Python, handling REST APIs, OAuth authentication, async programming, and dynamic content posting.`,
-        skills: "Python, REST APIs, OAuth Authentication, Asynchronous Programming, JSON Data Handling, Web Automation"
-      }
+
+    { 
+      title: "Intel RTL Sub-IP Design",
+      subheader: "(Internship Project — Summer 2024)",
+      desc: `During my internship at Intel, I designed a new RTL sub-IP critical for debug and functional register control on next-generation CPUs. I reverse-engineered legacy systems, adapted designs for new industry-standard tools, and implemented robust logic in SystemVerilog with thorough assertion-based testing. The final IP improved test reliability and enabled Intel to transition away from unsupported DFT tools, saving significant engineering time.`,
+      skills: "SystemVerilog, RTL Design, Assertions, EDA Tools, Linux Automation"
+    },
+    {
+      title: "MIPS-like Microprocessor Design",
+      subheader: "(Course Project — Spring 2023)",
+      desc: `I designed, simulated, and implemented a custom 32-bit MIPS-like microprocessor in VHDL, including a full CPU datapath, ALU, memory module, and memory-mapped I/O. The project covered instruction fetch, decode, and execute cycles for R-type, I-type, and J-type instructions, with full support for branching and jumping. The processor was validated through comprehensive testbenches and synthesized on FPGA hardware.`,
+      skills: "VHDL, CPU Architecture, RTL Design, FSM Controller Design, FPGA Prototyping"
+    },
+    {
+      title: "SoC Design for Autonomous Car",
+      subheader: "(Course Project — Spring 2024)",
+      desc: `As part of a System-on-Chip design course, I led the development of an autonomous vehicle capable of lane detection and self-navigation. I built the real-time image processing pipeline using Python and OpenCV, and designed the hardware steering control logic in SystemVerilog to drive the car based on lane data. This project demonstrated cross-disciplinary integration between embedded software and digital RTL design.`,
+      skills: "Python, OpenCV, SystemVerilog, SoC Design, Embedded Systems"
+    },
+    {
+      title: "Pong Game on FPGA",
+      subheader: "(Course Project — Spring 2024)",
+      desc: `I implemented a real-time Pong game using Verilog on the Pynq-Z2 FPGA board, involving HDMI video output generation, paddle and ball logic, and real-time user controls via pushbuttons. I modified HDL modules, created a custom Scoreboard module, and managed multi-clock domain timing using MMCM-generated clocking IP. This project strengthened my skills in modular Verilog design and timing-critical FPGA systems.`,
+      skills: "Verilog, FPGA Design, HDMI Output, IP Core Integration, Clock Management"
+    },
+    {
+      title: "Pontiac Fiero Engine Restoration",
+      subheader: "(Personal Engineering Project — 2023)",
+      desc: `I restored a Pontiac Fiero that had been non-functional for over seven years, systematically diagnosing and repairing critical engine components. My work included replacing vacuum lines, fuel injectors, ignition system components, and valve cover gasket, performing an EGR delete, and reprogramming the PROM chip to lower idle RPMs and solve overheating issues. This project demonstrated mechanical system troubleshooting, real-world engineering diagnostics, and custom system modifications.`,
+      skills: "Diagnostics, Systems Engineering, Control Systems, Mechanical Repair, Automotive Electronics"
+    },
+    {
+      title: "Roulette Game on Microcontroller",
+      subheader: "(Course Project — Spring 2024)",
+      desc: `I designed and built a microcontroller-based roulette game using a custom PCB and Raspberry Pi Pico. The system featured real-time user input, randomized LED spinning, LCD score display, and speaker output driven by DAC-generated analog signals. This project integrated digital design, analog control, PCB layout, and real-time software development.`,
+      skills: "Embedded Systems, PCB Design, DAC Programming, Microcontroller Development, Circuit Debugging"
+    },
+    {
+      title: "DAC Waveform Generator & USART Piano",
+      subheader: "(Lab Project — Spring 2023)",
+      desc: `I developed a complete software and hardware system to generate dynamic analog waveforms using a microcontroller’s DAC and DMA, extending it into a USART-controlled digital piano. The project involved building waveform lookup tables, managing event-driven DMA transfers, and real-time user-driven note selection over USART.`,
+      skills: "Embedded C Programming, DAC Control, DMA Usage, USART Communication, Real-Time Systems"
+    },
+    {
+      title: "Applied ML: Dempster-Shafer Fusion",
+      subheader: "(Capstone Project — Spring 2024)",
+      desc: `I developed and benchmarked classification models enhanced with Dempster-Shafer Theory to improve predictions under uncertainty. I worked with the UCSD ExtraSensory dataset, implemented multithreaded fusion pipelines, and evaluated performance across multiple models. This project emphasized uncertainty modeling and multi-model decision integration.`,
+      skills: "Python, Machine Learning, Information Fusion, Uncertainty Modeling, Multithreading"
+    },
+    {
+      title: "Flower Species Classification",
+      subheader: "(Machine Learning Project — Spring 2024)",
+      desc: `I built a flower species classifier using TensorFlow and transfer learning with the InceptionV3 architecture, achieving near 100% accuracy on a 10-class flower dataset. Techniques included model fine-tuning, hyperparameter optimization, and image data augmentation to maximize performance.`,
+      skills: "Python, TensorFlow, Deep Learning, Transfer Learning, Image Classification"
+    },
+    {
+      title: "API Automation Tools (Python Bots)",
+      subheader: "(Personal Software Projects — 2024)",
+      desc: `I developed multiple Python automation tools that interact with external APIs, including a Telegram bot and a Twitter bot. The Telegram bot handled asynchronous user messages and retrieved jokes dynamically from an online database, while the Twitter bot used OAuth 1.0a secure authentication to post tweets programmatically. These projects strengthened my understanding of RESTful APIs, asynchronous programming, secure web authentication, and JSON-based data exchanges.`,
+      skills: "Python, REST APIs, OAuth Authentication, Asynchronous Programming, JSON Data Handling, Web Automation"
+    }
     ];
   
     function openModal(index) {
       modalTitle.textContent = projects[index].title;
+      modalSubheader.textContent = projects[index].subheader; // ⭐ ADD THIS ⭐
       modalDescription.textContent = projects[index].desc;
       modalSkills.textContent = projects[index].skills;
       modal.style.display = 'block';
     }
-  
+
+
     function closeModal() {
       modal.style.display = 'none';
     }
