@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume | Justin Coppola</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #FA4616, #0021A5);
+      background-attachment: fixed;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .background-animation dotlottie-player {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+    }
+
+    header {
+      background: rgba(0, 33, 165, 0.9);
+      padding: 1rem 1rem 1rem 1rem; /* TOP RIGHT BOTTOM LEFT */
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem; /* Match home and projects */
+      font-weight: 700;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1.2rem;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #FFCC00;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1rem 2rem 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .resume-card {
+      background: rgba(255, 255, 255, 0.97);
+      color: #000;
+      padding: 2rem 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .resume-card:hover {
+      transform: translateY(-5px);
+    }
+
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .download-link {
+      margin-top: 1rem;
+    }
+
+    .download-link a {
+      background-color: #0021A5;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .download-link a:hover {
+      background-color: #FFCC00;
+      color: #0021A5;
+    }
+
+    footer {
+      background: rgba(0, 33, 165, 0.9);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      z-index: 1;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Circuit Board Background Animation -->
+  <div class="background-animation">
+    <dotlottie-player 
+      src="https://lottie.host/7f862c30-c5ec-4829-a248-895fbce816c2/mRheNRO0yJ.lottie" 
+      background="transparent" 
+      speed="1" 
+      loop 
+      autoplay>
+    </dotlottie-player>
+  </div>
+
+  <header>
+    <h1>Resume</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="resume-card">
+      <iframe src="extra/Coppola_Resume_S2025_2.pdf"></iframe>
+      <div class="download-link">
+        <a href="extra/Coppola_Resume_S2025_2.pdf" download>Download Resume</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Justin Coppola</p>
+  </footer>
+
+</body>
+</html>

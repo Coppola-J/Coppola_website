@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Justin Coppola</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #FA4616, #0021A5);
+      background-attachment: fixed;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .background-animation dotlottie-player {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+    }
+
+    header {
+      background: rgba(0, 33, 165, 0.9);
+      padding: 1rem 1rem 1rem 1rem; /* TOP RIGHT BOTTOM LEFT */
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1.2rem;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #FFCC00;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1rem 2rem 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.97);
+      color: #000;
+      padding: 2rem 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    input, textarea {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      background-color: #FA4616;
+      color: white;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #cc370f;
+    }
+
+    a.email-link {
+      color: #0021A5;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    footer {
+      background: rgba(0, 33, 165, 0.9);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      z-index: 1;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Circuit Board Background Animation -->
+  <div class="background-animation">
+    <dotlottie-player 
+      src="https://lottie.host/7f862c30-c5ec-4829-a248-895fbce816c2/mRheNRO0yJ.lottie" 
+      background="transparent" 
+      speed="1" 
+      loop 
+      autoplay>
+    </dotlottie-player>
+  </div>
+
+  <header>
+    <h1>Contact</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="contact-card">
+      <h2>Get in Touch</h2>
+      <p>If you'd like to connect, feel free to reach out using the form below or email me directly at <a class="email-link" href="mailto:justin.coppola@ufl.edu">justin.coppola@ufl.edu</a>.</p>
+
+      <form action="mailto:justin.coppola@ufl.edu" method="POST" enctype="text/plain">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Justin Coppola</p>
+  </footer>
+
+</body>
+</html>
