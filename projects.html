@@ -235,9 +235,9 @@ header h1 {
   /* Show menu toggle button */
   .menu-toggle {
     display: block;
-    font-size: 2rem;
+    font-size: 1rem;
     color: #fff;
-    margin-left: 1rem;
+    margin-left: .1rem;
   }
 
   .nav-links {
@@ -245,6 +245,7 @@ header h1 {
     flex-direction: column;
     align-items: center;
     margin-top: 1rem;
+    margin-left: .1rem;
   }
 
   .nav-links.active {
@@ -303,7 +304,9 @@ header h1 {
     <div class="header-container">
       <h1>Projects</h1>
       <nav>
-        <div class="menu-toggle" onclick="toggleMenu()">☰ Menu</div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span id="menu-icon">☰</span>
+          </div>
         <div class="nav-links">
           <a href="index.html">Home</a>
           <a href="projects.html">Projects</a>
@@ -503,8 +506,17 @@ header h1 {
     }
     function toggleMenu() {
         const navLinks = document.querySelector('.nav-links');
+        const menuIcon = document.getElementById('menu-icon');
         navLinks.classList.toggle('active');
+
+        // Change icon
+        if (navLinks.classList.contains('active')) {
+            menuIcon.textContent = '✖'; // X when menu open
+        } else {
+            menuIcon.textContent = '☰'; // Hamburger when menu closed
     }
+}
+
 
     // Auto-slide carousels
     document.querySelectorAll('.carousel').forEach(carousel => {
