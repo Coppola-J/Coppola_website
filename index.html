@@ -79,10 +79,10 @@
     .about-me {
       background: rgba(255, 255, 255, 0.97);
       color: #000;
-      padding: 2rem 2.5rem;
+      padding: 3rem 3rem;
       border-radius: 15px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      max-width: 800px;
+      max-width: 650px;
       width: 100%;
       text-align: center;
       transition: transform 0.3s;
@@ -90,15 +90,6 @@
 
     .about-me:hover {
       transform: translateY(-5px);
-    }
-
-    .about-me img {
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 1.5rem;
-      border: 4px solid #0021A5;
     }
 
     .about-me h2 {
@@ -121,10 +112,59 @@
       z-index: 1;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .profile-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
     }
+
+    .profile-image {
+      width: 225px;
+      height: 225px;
+      object-fit: cover;
+      border-radius: 75%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-image:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Hide desktop-only buttons on mobile */
+    .desktop-only {
+      display: inline-flex;
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    .icon {
+      padding: 1rem 3rem 1rem 3rem; /* TOP RIGHT BOTTOM LEFT */
+      width: 80px; /* Smaller size */
+      height: 80px;
+      filter: grayscale(100%); /* Make black and white */
+      transition: transform 0.3s ease, filter 0.3s ease;
+      outline: none; /* 🔥 Prevent the blue outline */
+      border: none; /* 🔥 Remove any browser default borders */
+      display: inline-flex; /* instead of block */
+      border: none; /* no border */
+      background: none; /* no background */
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon:hover {
+      transform: scale(1.1); /* Slight zoom on hover */
+      filter: grayscale(0%); /* Color returns on hover (optional) */
+    }
+
+
 
     @media (min-width: 769px) {
       header h1 {
@@ -164,10 +204,19 @@
       font-size: 1rem;
     }
 
-    .about-me img {
-      width: 180px;
-      height: 180px;
-      margin-bottom: 1rem;
+    .profile-wrapper {
+      flex-direction: column;
+    }
+
+    .desktop-only {
+      display: none; /* ✅ Only hide desktop GitHub/LinkedIn buttons */
+    }
+
+    .mobile-only {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
 
     /* Navigation Adjustments */
@@ -257,6 +306,42 @@
     .nav-links a:hover {
       color: #FF5349;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+
+    .fade-in-delay-1 {
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out forwards;
+      animation-delay: 0.2s;
+      animation-play-state: paused; /* ← Pause it at first */
+    }
+
+    .fade-in-delay-2 {
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out forwards;
+      animation-delay: 0.4s;
+      animation-play-state: paused; /* ← Pause it at first */
+    }
+
 }
   </style>
 </head>
@@ -283,6 +368,7 @@
       <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
       <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
 </header>
@@ -290,17 +376,74 @@
 
 <main>
   <div class="about-me">
-    <img src="images/headshot.jpg" alt="Profile Image">
+    <div class="profile-wrapper">
+      <a href="https://github.com/coppola-j" target="_blank" class="social-button desktop-only fade-in-delay-1">
+        <img src="images/github_icon.png" alt="GitHub Icon" class="icon">
+      </a>
+  
+      <img src="images/headshot.jpg" alt="Profile Image" class="profile-image">
+  
+      <a href="https://linkedin.com/in/justin-coppola" target="_blank" class="social-button desktop-only fade-in-delay-2">
+        <img src="images/linkedin_icon.png" alt="LinkedIn Icon" class="icon"> 
+      </a>
+    </div>      
+  
     <h2>About Me</h2>
     <p>Welcome to my personal portfolio website. I'm Justin Coppola, and I am passionate about semiconductor logic, driven by a desire to solve complex problems at the hardware level. I specialize in RTL design, SystemVerilog development, Python scripting, and digital verification. I'm eager to apply my experience building production-ready IP and my passion for digital systems to help shape the future of semiconductor technology.</p>
-  </div>
+  
+    <div class="social-links mobile-only">
+      <a href="https://github.com/coppola-j" target="_blank" class="social-button fade-in-delay-1">
+        <img src="images/github_icon.png" alt="GitHub Icon" class="icon">
+      </a>
+      <a href="https://linkedin.com/in/justin-coppola" target="_blank" class="social-button fade-in-delay-2">
+        <img src="images/linkedin_icon.png" alt="LinkedIn Icon" class="icon">
+      </a>
+    </div>    
+  </div>    
 </main>
+
 
 <footer>
   <p>&copy; 2025 Justin Coppola</p>
 </footer>
 
 <script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (entry.target.classList.contains('social-button')) {
+          // Animate buttons separately (play the paused animation)
+          entry.target.style.animationPlayState = 'running';
+        } else {
+          // Animate About Me section
+          entry.target.classList.add('fade-in');
+        }
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  // Observe About Me main card
+  observer.observe(document.querySelector('.about-me'));
+
+  // Observe social buttons (only mobile ones will trigger here)
+  document.querySelectorAll('.mobile-only .social-button.fade-in-delay-1, .mobile-only .social-button.fade-in-delay-2')
+    .forEach(button => {
+      observer.observe(button);
+    });
+
+  // 🔥 On page load, immediately animate the desktop-only buttons
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.desktop-only.fade-in-delay-1, .desktop-only.fade-in-delay-2')
+      .forEach(button => {
+        button.style.animationPlayState = 'running';
+      });
+  });
+
+
+
   function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
     const menuIcon = document.getElementById('menu-icon');

@@ -40,47 +40,21 @@
 
     header {
       background: rgba(0, 33, 165, 0.9);
-      padding: 1rem;
+      padding: 1rem 1rem 1rem 1rem; /* TOP RIGHT BOTTOM LEFT */
       text-align: center;
       position: relative;
       z-index: 1;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
     }
 
     header h1 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       margin: 0;
       font-size: 2rem;
       font-weight: 700;
     }
 
     nav {
-      margin-left: 1rem;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 2rem;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 1rem;
-      gap: 1rem;
-    }
-
-    .nav-links.active {
-      display: flex;
-      animation: fadeIn 0.3s ease forwards;
+      margin-top: 0.5rem;
     }
 
     nav a {
@@ -88,8 +62,6 @@
       text-decoration: none;
       margin: 0 1rem;
       font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.3s;
     }
 
     nav a:hover {
@@ -169,90 +141,172 @@
       z-index: 1;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     @media (min-width: 769px) {
-      .nav-links {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        margin-top: 1rem;
+      header h1 {
+        padding: 0rem 0rem 1rem 0rem; /* TOP RIGHT BOTTOM LEFT */
       }
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        padding: 1rem 3rem; /* Top/Bottom: 1.5rem, Left/Right: 1rem */
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-links a:hover {
+        color: #FF5349;
+      }
+
       .menu-toggle {
         display: none;
       }
     }
 
     @media (max-width: 768px) {
-      nav {
-        margin-top: 0.5rem;
-      }
-
-      .menu-toggle {
-    display: block;
-    font-size: 1rem;
-    color: #fff;
-    margin-left: .1rem;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1rem;
-    gap: 0rem;
-    margin-left: .1rem;
-  }
-
-  .nav-links.active {
-    display: flex;
-    animation: fadeIn 0.3s ease forwards;
-  }
-
-  .modal-content {
-    width: 90%;
-    max-width: 400px;
-    padding: 1rem;
-    font-size: 0.9rem;
-  }
-
-  /* 🔥 Key: Flex row for header, but special center for h1 */
-  header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-    padding: 1rem;
-  }
-
-  header h1 {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
-    font-size: 1.5rem;
-  }
 
       .contact-card {
-        padding: 1.5rem;
-        max-width: 90%;
+        background: rgba(255, 255, 255, 0.97);
+        color: #000;
+        padding: 2rem 2.5rem;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        max-width: 350px;
+        width: 100%;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+      .modal-content {
+        width: 90%;
+        max-width: 400px;
+        padding: 1rem;
+        font-size: 0.9rem;
       }
 
-      input, textarea {
-        font-size: 0.9rem;
-        padding: 0.6rem;
-      }
+        /* Navigation Adjustments */
+        nav {
+          margin-top: 0.5rem;
+        }
 
-      button {
-        font-size: 0.9rem;
-        padding: 0.6rem;
+        header {
+          background: rgba(0, 33, 165, 0.9);
+          height: 70px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10;
+        }
+
+        .header-container {
+          width: 100%;
+          max-width: 1200px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .menu-toggle {
+          position: absolute;
+          top: 47%;
+          left: 0.5rem;
+          transform: translateY(-50%);
+          font-size: 2rem;
+          color: #fff;
+          cursor: pointer;
+          z-index: 20;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: white;
+          margin: 0;
+        }
+
+        /* Mobile Dropdown Menu */
+        .nav-links {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          margin: 0 auto;
+          width: 75%;
+          background: rgba(0, 33, 165, 0.7);
+          backdrop-filter: blur(6px);
+          border-radius: 15px;
+          box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          overflow: hidden;
+          max-height: 0;
+          opacity: 0;
+          transition: max-height 0.5s ease, opacity 0.5s ease;
+          z-index: 5;
+        }
+
+        .nav-links.active {
+          max-height: 500px;
+          opacity: 1;
+        }
+
+        .nav-links a {
+          padding: 1rem 1rem;
+          width: 100%;
+          text-align: center;
+          text-decoration: none;
+          color: white;
+          font-weight: 500;
+          border-top: 1px solid rgba(255, 255, 255, 0.15);
+          transition: color 0.3s ease;
+        }
+
+        .nav-links a:first-child {
+          border-top: none;
+        }
+
+        .nav-links a:hover {
+          color: #FF5349;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .fade-in {
+          opacity: 0;
+          animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        .fade-in-delay-1 {
+          opacity: 0;
+          animation: fadeUp 0.8s ease-out forwards;
+          animation-delay: 0.2s;
+          animation-play-state: paused; /* ← Pause it at first */
+        }
+
+        .fade-in-delay-2 {
+          opacity: 0;
+          animation: fadeUp 0.8s ease-out forwards;
+          animation-delay: 0.4s;
+          animation-play-state: paused; /* ← Pause it at first */
+        }
       }
-    }
   </style>
 </head>
 
@@ -269,18 +323,18 @@
 </div>
 
 <header>
-  <h1>Contact</h1>
-  <nav>
+  <div class="header-container">
     <div class="menu-toggle" onclick="toggleMenu()">
       <span id="menu-icon">☰</span>
     </div>
+    <h1>Justin Coppola</h1>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
       <a href="resume.html">Resume</a>
       <a href="contact.html">Contact</a>
     </div>
-  </nav>
+  </div>
 </header>
 
 <main>
