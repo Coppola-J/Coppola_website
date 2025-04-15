@@ -18,7 +18,8 @@
       overflow-x: hidden;
       position: relative;
       scroll-behavior: smooth;
-      overscroll-behavior: none;
+      overscroll-behavior-y: none;
+      touch-action: manipulation;
     }
 
     .background-animation {
@@ -83,7 +84,7 @@
     }
 
     main {
-      padding: 5rem 2rem 2rem 2rem;
+      padding: 2rem 2rem 2rem 2rem;
       max-width: 1200px;
       margin: auto;
       position: relative;
@@ -92,6 +93,20 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+    }
+
+    .uf-banner {
+      width: 500px;
+      max-width: 80%;
+      margin-bottom: 0rem;
+      margin-top: -2rem;
+      margin-left: 3.5rem;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .uf-banner:hover {
+      transform: scale(1.03);
     }
 
     .about-me {
@@ -109,30 +124,6 @@
       margin-bottom: 2.5rem;
     }
 
-    .about-me:hover {
-      transform: translateY(-5px);
-    }
-
-    .about-me h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .about-me p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
-
-    .profile-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
     .profile-image {
       width: 225px;
       height: 225px;
@@ -144,6 +135,34 @@
     .profile-image:hover {
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .tagline {
+      font-size: .4rem;
+      color: #000000;
+      margin-top: 0.5rem;
+      animation: fadeIn .5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .about-me h2 {
+      font-size: 1.8rem;
+    }
+
+    .about-me p {
+      margin-bottom: 2rem;      
+      font-size: 1rem;
+      line-height: 1.8;
+      letter-spacing: 0.2px;
+    }
+
+    .profile-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
     }
 
     .icon {
@@ -174,18 +193,12 @@
 
     .mobile-only {
       display: none;
-    }
-
-    .tagline {
-      font-size: .4rem;
-      color: #000000;
-      margin-top: 0.5rem;
-      animation: fadeIn .5s ease-out forwards;
-      opacity: 0;
+      margin-top: 1rem;
+      gap: 2rem;
     }
 
     .cta-button {
-      margin-top: 2rem;
+      margin-top: 3rem;
       background-color: #FA4616;
       color: white;
       padding: 1rem 1rem;
@@ -197,7 +210,7 @@
       transition: background-color 0.3s ease;
       opacity: 0;
       animation: fadeUp 0.8s ease-out forwards;
-      animation-delay: 4s;
+      animation-delay: 3s;
       animation-play-state: paused;
     }
 
@@ -230,6 +243,10 @@
     }
 
     @media (max-width: 768px) {
+    .uf-banner {
+      margin-left: 2.6rem;
+    }
+
     /* About Me Card Adjustments */
     .about-me {
       padding: 1.5rem;
@@ -383,13 +400,39 @@
       animation-play-state: paused; /* ← Pause it at first */
     }
 
+@media (max-width: 768px) {
+  .rotated-mobile-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .rotated-mobile-animation dotlottie-player {
+    transform: rotate(90deg) scale(2.5);
+    transform-origin: center center;
+    width: 100vh;
+    height: auto;
+    opacity: 0.15; /* 🔥 Very subtle */
+    margin-top: 30px; /* 🔥 Shifts animation downward below header */
+  }
+}
+
+
+
   </style>
 </head>
 
 <body>
 
-<!-- Background animation -->
-<div class="background-animation">
+<div class="background-animation rotated-mobile-animation">
   <dotlottie-player 
     src="https://lottie.host/7f862c30-c5ec-4829-a248-895fbce816c2/mRheNRO0yJ.lottie" 
     background="transparent" 
@@ -397,6 +440,7 @@
     loop autoplay>
   </dotlottie-player>
 </div>
+
 
 <header>
   <div class="header-container">
@@ -416,6 +460,9 @@
 
 
 <main>
+  <a href="https://www.ufl.edu" target="_blank" rel="noopener noreferrer">
+    <img src="images/uf_long.png" alt="UF Banner" class="uf-banner">
+  </a>  
   <div class="about-me">
     <div class="profile-wrapper">
       <a href="https://github.com/coppola-j" target="_blank" class="social-button desktop-only fade-in-delay-1">
