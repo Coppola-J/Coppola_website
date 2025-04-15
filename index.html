@@ -11,7 +11,7 @@
       height: 100%;
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom right, #FA4616, #0021A5);
+      background: linear-gradient(to bottom, #FA4616, #0021A5);
       background-attachment: fixed;
       color: #fff;
       overflow-x: hidden;
@@ -46,24 +46,27 @@
       z-index: 1;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
+
     header h1 {
       margin: 0;
       font-size: 2rem;
       font-weight: 700;
     }
+
     nav {
       margin-top: 0.5rem;
     }
+
     nav a {
       color: #fff;
       text-decoration: none;
       margin: 0 1rem;
       font-weight: 500;
     }
+
     nav a:hover {
       color: #FFCC00;
     }
-
     main {
       padding: 5rem 2rem 2rem 2rem;
       max-width: 1200px;
@@ -80,12 +83,15 @@
       background: rgba(255, 255, 255, 0.97);
       color: #000;
       padding: 3rem 3rem;
-      border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 50px;
       max-width: 650px;
       width: 100%;
       text-align: center;
       transition: transform 0.3s;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 100px rgba(61, 61, 61, 0.5), 0 0 30px rgba(51, 50, 50, 0.1);
+      backdrop-filter: blur(20px);
+      margin-bottom: 2.5rem;
     }
 
     .about-me:hover {
@@ -100,16 +106,7 @@
     .about-me p {
       font-size: 1.1rem;
       line-height: 1.6;
-    }
-
-    footer {
-      background: rgba(0, 33, 165, 0.9);
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 2rem;
     }
 
     .profile-wrapper {
@@ -162,6 +159,35 @@
     .icon:hover {
       transform: scale(1.1); /* Slight zoom on hover */
       filter: grayscale(0%); /* Color returns on hover (optional) */
+    }
+
+    .tagline {
+      font-size: .4rem;
+      color: #000000;
+      margin-top: 0.5rem;
+      animation: fadeIn .5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .cta-button {
+      margin-top: 2rem;
+      background-color: #FA4616;
+      color: white;
+      padding: 1rem 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out forwards;
+      animation-delay: 4s;
+      animation-play-state: paused;
+    }
+
+    .cta-button:hover {
+      background-color: #ff6d3f;
     }
 
 
@@ -388,9 +414,11 @@
       </a>
     </div>      
   
+    <p class="tagline">RTL Design | Verification |  FPGA Engineer</p>
     <h2>About Me</h2>
-    <p>Welcome to my personal portfolio website. I'm Justin Coppola, and I am passionate about semiconductor logic, driven by a desire to solve complex problems at the hardware level. I specialize in RTL design, SystemVerilog development, Python scripting, and digital verification. I'm eager to apply my experience building production-ready IP and my passion for digital systems to help shape the future of semiconductor technology.</p>
-  
+    <p>Welcome to my personal portfolio website! I am passionate about semiconductor logic, driven by a desire to solve complex problems at the hardware level. I specialize in RTL design, SystemVerilog development, Python scripting and digital verification. I'm eager to apply my experience building production-ready IP and my passion for digital systems to help shape the future of semiconductor technology.</p>
+    <a href="projects.html" class="cta-button fade-in-projects">See My Projects</a>
+
     <div class="social-links mobile-only">
       <a href="https://github.com/coppola-j" target="_blank" class="social-button fade-in-delay-1">
         <img src="images/github_icon.png" alt="GitHub Icon" class="icon">
@@ -402,10 +430,6 @@
   </div>    
 </main>
 
-
-<footer>
-  <p>&copy; 2025 Justin Coppola</p>
-</footer>
 
 <script>
   const observer = new IntersectionObserver(entries => {
@@ -440,6 +464,9 @@
       .forEach(button => {
         button.style.animationPlayState = 'running';
       });
+
+      // ✅ Trigger projects button fade-in
+      document.querySelector('.fade-in-projects').style.animationPlayState = 'running';
   });
 
 
