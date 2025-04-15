@@ -11,7 +11,7 @@
       height: 100%;
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom, #FA4616, #0021A5);
+      background: linear-gradient(to bottom, #FA4616 0%, #FA4616 35%, #FF6D3F 50%, #0021A5 100%);
       background-attachment: fixed;
       color: #fff;
       overflow-x: hidden;
@@ -33,31 +33,50 @@
       object-fit: cover;
       opacity: 0.15;
     }
+
     header {
-      background: rgba(0, 33, 165, 0.9);
-      padding: 1rem 1rem 1rem 1rem; /* TOP RIGHT BOTTOM LEFT */
+      background: linear-gradient(to right, #001b7a 0%, #0021A5 50%, #0038D1 100%);
+      padding: 1rem;
       text-align: center;
       position: relative;
       z-index: 1;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(6px);
     }
+
     header h1 {
       margin: 0;
       font-size: 2rem;
       font-weight: 700;
     }
+
+    header h1::after {
+      content: "";
+      display: block;
+      margin: 0.4rem auto 0;
+      width: 150px;
+      height: 3px;
+      background: #FA4616;
+      border-radius: 999px;
+      opacity: 0.8;
+    }
+
     nav {
       margin-top: 0.5rem;
     }
+
     nav a {
       color: #fff;
       text-decoration: none;
       margin: 0 1rem;
       font-weight: 500;
     }
+
     nav a:hover {
       color: #FFCC00;
     }
+
     main {
       padding: 5rem 2rem 2rem 2rem;
       max-width: 1200px;
@@ -192,33 +211,19 @@
       cursor: pointer;
       z-index: 10;
     }
+
     .close:hover {
       color: #000;
     }
+
     body {
-  overscroll-behavior: none;
-}
+      overscroll-behavior: none;
+    }
 
-  /* Header and nav styling */
-  header {
-    background: rgba(0, 33, 165, 0.9);
-    padding: 1rem;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  header h1 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 700;
-  }
-
-  /* Sub-header centered */
-  .sub-header {
-    text-align: center;
-  }
+    /* Sub-header centered */
+    .sub-header {
+      text-align: center;
+    }
 
 
 /* Desktop view adjustments */
@@ -253,7 +258,7 @@
     .carousel, .carousel img {
       height: 200px;
     }
-    
+
     .modal-content {
       padding: 1rem 1rem 2rem 1rem;
       max-height: 85vh;
@@ -268,7 +273,6 @@
       right: 0.8rem;   /* closer to edge */
       font-size: 1.6rem;
     }
-
 
     /* Navigation Adjustments */
     nav {
@@ -315,7 +319,7 @@
     /* Mobile Dropdown Menu */
     .nav-links {
       position: absolute;
-      top: 100%;
+      top: 125%;
       left: 0;
       right: 0;
       margin: 0 auto;
@@ -359,7 +363,6 @@
     }
 }
 
-
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -380,8 +383,7 @@
   animation: fadeUp 0.8s ease forwards;
 }
 
-
-  </style>
+</style>
 </head>
 
 <body>
@@ -536,61 +538,71 @@
       title: "Intel RTL Sub-IP Design",
       subheader: "(Internship Project — Summer 2024)",
       desc: `During my internship at Intel, I designed a new RTL sub-IP critical for debug and functional register control on next-generation CPUs. I reverse-engineered legacy systems, adapted designs for new industry-standard tools, and implemented robust logic in SystemVerilog with thorough assertion-based testing. The final IP improved test reliability and enabled Intel to transition away from unsupported DFT tools, saving significant engineering time.`,
-      skills: "SystemVerilog, RTL Design, Assertions, EDA Tools, Linux Automation"
+      skills: "SystemVerilog, RTL Design, Assertions, EDA Tools, Linux Automation",
+      image: "images/intel_logo.gif" // ← new image just for the modal
     },
     {
       title: "MIPS-like Microprocessor Design",
       subheader: "(Course Project — Spring 2023)",
       desc: `I designed, simulated, and implemented a custom 32-bit MIPS-like microprocessor in VHDL, including a full CPU datapath, ALU, memory module, and memory-mapped I/O. The project covered instruction fetch, decode, and execute cycles for R-type, I-type, and J-type instructions, with full support for branching and jumping. The processor was validated through comprehensive testbenches and synthesized on FPGA hardware.`,
-      skills: "VHDL, CPU Architecture, RTL Design, FSM Controller Design, FPGA Prototyping"
+      skills: "VHDL, CPU Architecture, RTL Design, FSM Controller Design, FPGA Prototyping",
+      image: "images/mips_project_2.png"
     },
     {
       title: "SoC Design for Autonomous Car",
       subheader: "(Course Project — Spring 2024)",
       desc: `As part of a System-on-Chip design course, I led the development of an autonomous vehicle capable of lane detection and self-navigation. I built the real-time image processing pipeline using Python and OpenCV, and designed the hardware steering control logic in SystemVerilog to drive the car based on lane data. This project demonstrated cross-disciplinary integration between embedded software and digital RTL design.`,
-      skills: "Python, OpenCV, SystemVerilog, SoC Design, Embedded Systems"
+      skills: "Python, OpenCV, SystemVerilog, SoC Design, Embedded Systems",
+      image: "images/soc_camera_car.jpg"
     },
     {
       title: "Pong Game on FPGA",
       subheader: "(Course Project — Spring 2024)",
       desc: `I implemented a real-time Pong game using Verilog on the Pynq-Z2 FPGA board, involving HDMI video output generation, paddle and ball logic, and real-time user controls via pushbuttons. I modified HDL modules, created a custom Scoreboard module, and managed multi-clock domain timing using MMCM-generated clocking IP. This project strengthened my skills in modular Verilog design and timing-critical FPGA systems.`,
-      skills: "Verilog, FPGA Design, HDMI Output, IP Core Integration, Clock Management"
+      skills: "Verilog, FPGA Design, HDMI Output, IP Core Integration, Clock Management",
+       image: "images/pong.gif"
     },
     {
       title: "Pontiac Fiero Engine Restoration",
       subheader: "(Personal Engineering Project — 2023)",
       desc: `I restored a Pontiac Fiero that had been non-functional for over seven years, systematically diagnosing and repairing critical engine components. My work included replacing vacuum lines, fuel injectors, ignition system components, and valve cover gasket, performing an EGR delete, and reprogramming the PROM chip to lower idle RPMs and solve overheating issues. This project demonstrated mechanical system troubleshooting, real-world engineering diagnostics, and custom system modifications.`,
-      skills: "Diagnostics, Systems Engineering, Control Systems, Mechanical Repair, Automotive Electronics"
+      skills: "Diagnostics, Systems Engineering, Control Systems, Mechanical Repair, Automotive Electronics",
+      image: "images/fiero.gif"
     },
     {
       title: "Roulette Game on Microcontroller",
       subheader: "(Course Project — Spring 2024)",
       desc: `I designed and built a microcontroller-based roulette game using a custom PCB and Raspberry Pi Pico. The system featured real-time user input, randomized LED spinning, LCD score display, and speaker output driven by DAC-generated analog signals. This project integrated digital design, analog control, PCB layout, and real-time software development.`,
-      skills: "Embedded Systems, PCB Design, DAC Programming, Microcontroller Development, Circuit Debugging"
+      skills: "Embedded Systems, PCB Design, DAC Programming, Microcontroller Development, Circuit Debugging",
+      image: "images/full_diagram.png"
     },
     {
       title: "DAC Waveform Generator & USART Piano",
       subheader: "(Lab Project — Spring 2023)",
       desc: `I developed a complete software and hardware system to generate dynamic analog waveforms using a microcontroller’s DAC and DMA, extending it into a USART-controlled digital piano. The project involved building waveform lookup tables, managing event-driven DMA transfers, and real-time user-driven note selection over USART.`,
-      skills: "Embedded C Programming, DAC Control, DMA Usage, USART Communication, Real-Time Systems"
+      skills: "Embedded C Programming, DAC Control, DMA Usage, USART Communication, Real-Time Systems",
+      image: "images/up.jpg"
     },
     {
       title: "Applied ML: Dempster-Shafer Fusion",
       subheader: "(Capstone Project — Spring 2024)",
       desc: `I developed and benchmarked classification models enhanced with Dempster-Shafer Theory to improve predictions under uncertainty. I worked with the UCSD ExtraSensory dataset, implemented multithreaded fusion pipelines, and evaluated performance across multiple models. This project emphasized uncertainty modeling and multi-model decision integration.`,
-      skills: "Python, Machine Learning, Information Fusion, Uncertainty Modeling, Multithreading"
+      skills: "Python, Machine Learning, Information Fusion, Uncertainty Modeling, Multithreading",
+      image: "images/ds_flowchart.jpg"
     },
     {
       title: "Flower Species Classification",
       subheader: "(Machine Learning Project — Spring 2024)",
       desc: `I built a flower species classifier using TensorFlow and transfer learning with the InceptionV3 architecture, achieving near 100% accuracy on a 10-class flower dataset. Techniques included model fine-tuning, hyperparameter optimization, and image data augmentation to maximize performance.`,
-      skills: "Python, TensorFlow, Deep Learning, Transfer Learning, Image Classification"
+      skills: "Python, TensorFlow, Deep Learning, Transfer Learning, Image Classification",
+      image: "images/flower_id.png"
     },
     {
       title: "API Automation Tools (Python Bots)",
       subheader: "(Personal Software Projects — 2024)",
       desc: `I developed multiple Python automation tools that interact with external APIs, including a Telegram bot and a Twitter bot. The Telegram bot handled asynchronous user messages and retrieved jokes dynamically from an online database, while the Twitter bot used OAuth 1.0a secure authentication to post tweets programmatically. These projects strengthened my understanding of RESTful APIs, asynchronous programming, secure web authentication, and JSON-based data exchanges.`,
-      skills: "Python, REST APIs, OAuth Authentication, Asynchronous Programming, JSON Data Handling, Web Automation"
+      skills: "Python, REST APIs, OAuth Authentication, Asynchronous Programming, JSON Data Handling, Web Automation",
+      image: "images/python_logo.jpg"
     }
     ];
   
@@ -600,19 +612,14 @@
       modalDescription.textContent = projects[index].desc;
       modalSkills.textContent = projects[index].skills;
 
-      // 🖼️ Pull image from the clicked card
-      const projectCards = document.querySelectorAll('.project-card');
-      const clickedCard = projectCards[index];
-      const imgElement = clickedCard.querySelector('.carousel img'); // get first image
-      const modalImage = document.getElementById('modalImage');
-      modalImage.src = imgElement.src;
+      // 🖼️ Directly use modal-specific image from data
+      modalImage.src = projects[index].image;
 
       modal.style.display = 'block';
       setTimeout(() => {
         modal.classList.add('show');
       }, 10);
     }
-
 
     function closeModal() {
       modal.classList.remove('show');
