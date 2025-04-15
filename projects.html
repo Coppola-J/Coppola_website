@@ -124,6 +124,7 @@
     }
 
     .modal {
+      padding: 0rem 0rem 0rem 0rem; /* TOP RIGHT BOTTOM LEFT */
       display: none;
       position: fixed;
       z-index: 2000;
@@ -137,22 +138,40 @@
       pointer-events: none; /* Disable clicking while hidden */
     }
 
+    .modal-image {
+      width: 100%;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .modal-image img {
+      max-width: 100%;
+      max-height: 300px; /* optional height limit */
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+
     .modal.show {
       display: block;
       opacity: 1;
       pointer-events: auto; /* Allow clicks once shown */
     }
 
-    /* Modal box */
     .modal-content {
       background-color: #fff;
       color: #000;
       margin: 5% auto;
-      padding: 2rem;
-      border-radius: 10px;
+      padding: 1.5rem 1rem 2rem 1rem;
+      border-radius: 12px;
       width: 90%;
       max-width: 700px;
       position: relative;
+      max-height: 90vh; /* 🔥 Cap the modal height */
+      overflow-y: auto; /* 🔥 Make it scroll if too tall */
+      box-sizing: border-box;
       transform: scale(0.95);
       opacity: 0;
       transition: transform 0.3s ease, opacity 0.3s ease;
@@ -164,13 +183,14 @@
     }
 
     .close {
-      color: #aaa;
+      color: #000;
       position: absolute;
       top: 1rem;
-      right: 1.5rem;
-      font-size: 28px;
+      right: 1.2rem;
+      font-size: 1.8rem;
       font-weight: bold;
       cursor: pointer;
+      z-index: 10;
     }
     .close:hover {
       color: #000;
@@ -179,26 +199,27 @@
   overscroll-behavior: none;
 }
 
-/* Header and nav styling */
-header {
-  background: rgba(0, 33, 165, 0.9);
-  padding: 1rem;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
+  /* Header and nav styling */
+  header {
+    background: rgba(0, 33, 165, 0.9);
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
 
-header h1 {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 700;
-}
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
 
-/* Sub-header centered */
-.sub-header {
-  text-align: center;
-}
+  /* Sub-header centered */
+  .sub-header {
+    text-align: center;
+  }
+
 
 /* Desktop view adjustments */
 @media (min-width: 769px) {
@@ -232,12 +253,22 @@ header h1 {
     .carousel, .carousel img {
       height: 200px;
     }
+    
     .modal-content {
-      width: 90%;
-      max-width: 400px;
-      padding: 1rem;
-      font-size: 0.9rem;
+      padding: 1rem 1rem 2rem 1rem;
+      max-height: 85vh;
     }
+
+    .modal-image img {
+      max-height: 220px;
+    }
+
+    .close {
+      top: 0.5rem;     /* lower than default */
+      right: 0.8rem;   /* closer to edge */
+      font-size: 1.6rem;
+    }
+
 
     /* Navigation Adjustments */
     nav {
@@ -482,6 +513,9 @@ header h1 {
 <div id="modal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
+    <div id="modalImageContainer" class="modal-image">
+      <img id="modalImage" src="" alt="Project Image" />
+    </div>    
     <h2 id="modalTitle"></h2>
     <p id="modalSubheader" class="modal-subheader"></p> <!-- 🔥 New Subheader Line -->
     <p id="modalDescription"></p>
@@ -565,12 +599,20 @@ header h1 {
       modalSubheader.textContent = projects[index].subheader;
       modalDescription.textContent = projects[index].desc;
       modalSkills.textContent = projects[index].skills;
-      
-      modal.style.display = 'block'; // Start by setting display to block
+
+      // 🖼️ Pull image from the clicked card
+      const projectCards = document.querySelectorAll('.project-card');
+      const clickedCard = projectCards[index];
+      const imgElement = clickedCard.querySelector('.carousel img'); // get first image
+      const modalImage = document.getElementById('modalImage');
+      modalImage.src = imgElement.src;
+
+      modal.style.display = 'block';
       setTimeout(() => {
         modal.classList.add('show');
-      }, 10); // Tiny delay so CSS transition triggers properly
+      }, 10);
     }
+
 
     function closeModal() {
       modal.classList.remove('show');
